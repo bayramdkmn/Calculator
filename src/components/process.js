@@ -11,29 +11,16 @@ export const calculate = (
   const secondValue = parseFloat(display.split(" ").pop());
   let result;
 
-  switch (operation) {
-    case "+":
-      result = firstValue + secondValue;
-      break;
-    case "-":
-      result = firstValue - secondValue;
-      break;
-    case "*":
-      result = firstValue * secondValue;
-      break;
-    case "/":
-      result = firstValue / secondValue;
-      result = Number(result.toFixed(1));
-      break;
-    case "mod":
-      result = firstValue % secondValue;
-      break;
-    case "%":
-      result = (firstValue * secondValue) / 100;
-      break;
-    default:
-      return;
-  }
+  const operations = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+    "*": (a, b) => a * b,
+    "/": (a, b) => Number((a / b).toFixed(1)), // Fixed to 1 decimal place for division
+    mod: (a, b) => a % b,
+    "%": (a, b) => (a * b) / 100,
+  };
+
+  result = operations[operation](firstValue, secondValue);
 
   setDisplay(String(result));
   setFirstValue(result);

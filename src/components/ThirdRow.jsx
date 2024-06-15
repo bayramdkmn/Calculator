@@ -8,32 +8,20 @@ function ThirdRow({
   stateProps,
   clickProps,
 }) {
+  const buttons = [
+    { label: "4", onClick: () => handleNumberClick("4", clickProps) },
+    { label: "5", onClick: () => handleNumberClick("5", clickProps) },
+    { label: "6", onClick: () => handleNumberClick("6", clickProps) },
+    { label: "*", onClick: () => handleOperation("*", stateProps) },
+  ];
+
   return (
     <div className="Row">
-      <div
-        className="button-div"
-        onClick={() => handleNumberClick("4", clickProps)}
-      >
-        4
-      </div>
-      <div
-        className="button-div"
-        onClick={() => handleNumberClick("5", clickProps)}
-      >
-        5
-      </div>
-      <div
-        className="button-div"
-        onClick={() => handleNumberClick("6", clickProps)}
-      >
-        6
-      </div>
-      <div
-        className="button-div"
-        onClick={() => handleOperation("*", stateProps)}
-      >
-        *
-      </div>
+      {buttons.map((button) => (
+        <div key={button.label} className="button-div" onClick={button.onClick}>
+          {button.label}
+        </div>
+      ))}
     </div>
   );
 }

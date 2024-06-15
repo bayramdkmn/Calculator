@@ -8,32 +8,21 @@ function SecondRow({
   stateProps,
   clickProps,
 }) {
+  // Button configurations in an array
+  const buttons = [
+    { label: "7", action: () => handleNumberClick("7", clickProps) },
+    { label: "8", action: () => handleNumberClick("8", clickProps) },
+    { label: "9", action: () => handleNumberClick("9", clickProps) },
+    { label: "/", action: () => handleOperation("/", stateProps) },
+  ];
+
   return (
     <div className="Row">
-      <div
-        className="button-div"
-        onClick={() => handleNumberClick("7", clickProps)}
-      >
-        7
-      </div>
-      <div
-        className="button-div"
-        onClick={() => handleNumberClick("8", clickProps)}
-      >
-        8
-      </div>
-      <div
-        className="button-div"
-        onClick={() => handleNumberClick("9", clickProps)}
-      >
-        9
-      </div>
-      <div
-        className="button-div"
-        onClick={() => handleOperation("/", stateProps)}
-      >
-        /
-      </div>
+      {buttons.map((button) => (
+        <div key={button.label} className="button-div" onClick={button.action}>
+          {button.label}
+        </div>
+      ))}
     </div>
   );
 }

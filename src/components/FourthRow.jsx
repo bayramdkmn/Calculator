@@ -8,31 +8,25 @@ function FourthRow({
   stateProps,
   clickProps,
 }) {
+  const numbers = ["1", "2", "3"];
+  const operation = "-";
+
   return (
     <div className="Row">
+      {numbers.map((number) => (
+        <div
+          key={number}
+          className="button-div"
+          onClick={() => handleNumberClick(number, clickProps)}
+        >
+          {number}
+        </div>
+      ))}
       <div
         className="button-div"
-        onClick={() => handleNumberClick("1", clickProps)}
+        onClick={() => handleOperation(operation, stateProps)}
       >
-        1
-      </div>
-      <div
-        className="button-div"
-        onClick={() => handleNumberClick("2", clickProps)}
-      >
-        2
-      </div>
-      <div
-        className="button-div"
-        onClick={() => handleNumberClick("3", clickProps)}
-      >
-        3
-      </div>
-      <div
-        className="button-div"
-        onClick={() => handleOperation("-", stateProps)}
-      >
-        -
+        {operation}
       </div>
     </div>
   );

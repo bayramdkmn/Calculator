@@ -4,24 +4,20 @@ import "../css/Numbers.css";
 import "../css/Rows.css";
 
 function FirstRoww({ stateProps, handleClear }) {
+  const buttons = [
+    { label: "" },
+    { label: "mod", onClick: () => handleOperation("mod", stateProps) },
+    { label: "%", onClick: () => handleOperation("%", stateProps) },
+    { label: "C", onClick: handleClear },
+  ];
+
   return (
     <div className="Row">
-      <div className="button-div"></div>
-      <div
-        className="button-div"
-        onClick={() => handleOperation("mod", stateProps)}
-      >
-        mod
-      </div>
-      <div
-        className="button-div"
-        onClick={() => handleOperation("%", stateProps)}
-      >
-        %
-      </div>
-      <div className="button-div" onClick={handleClear}>
-        C
-      </div>
+      {buttons.map((button) => (
+        <div key={button.label} className="button-div" onClick={button.onClick}>
+          {button.label}
+        </div>
+      ))}
     </div>
   );
 }
